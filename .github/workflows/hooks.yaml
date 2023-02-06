@@ -25,4 +25,5 @@ jobs:
     with:
       working_directory: hooks
       analyze_directories: .
+      report_on: pre_gen.dart
 
