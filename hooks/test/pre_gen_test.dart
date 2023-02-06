@@ -42,7 +42,7 @@ void main() {
       vars['project_description'] = '';
 
       File('pubspec.yaml').writeAsStringSync(
-'''
+        '''
 name: PubspecTitle
 description: PubspecDescription
 ''',
