@@ -1,0 +1,29 @@
+name: flutter_web_preloader
+description: A brick that creates a smart web entrypoint for Flutter that pre loads its assets before starting the app
+
+version: 0.1.0+1
+
+environment:
+  mason: ">=0.1.0-dev.41 <0.1.0"
+
+vars:
+  project_title:
+    type: string
+    description: The project title, defaults to the pubspec name value.
+    default: ''
+    prompt: What is project title?
+  project_description:
+    type: string
+    description: The project description, defaults to the pubspec description value.
+    default: ''
+    prompt: What is project description?
+   #additional_scripts:
+   #  type: array
+   #  description: A list of scripts sources to be included on the site.
+   #  defaults:
+   #  prompt: Any additional script sources?
+  batch_size:
+    type: number
+    description: The number of concurrent loads that the pre load will trigger.
+    default: 20
+    prompt: Pre load batch size (defaults to 20)?
