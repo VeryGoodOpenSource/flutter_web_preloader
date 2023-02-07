@@ -13,12 +13,19 @@ void main() {
     late HookContext hookContext;
     late Map<String, dynamic> vars;
 
+    late Directory originalDir;
+
     setUp(() {
       vars = <String, dynamic>{};
       hookContext = _MockHookContext();
       when(() => hookContext.vars).thenReturn(vars);
 
+      originalDir = Directory.current;
       Directory.current = Directory.systemTemp;
+    });
+
+    tearDown(() {
+      Directory.current = originalDir;
     });
 
     test('keep the user input values', () {
