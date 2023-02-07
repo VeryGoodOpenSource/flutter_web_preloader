@@ -1,5 +1,5 @@
 name: flutter_web_preloader
-description: A brick that creates a smart web entrypoint for Flutter that pre loads its assets before starting the app
+description: A brick that creates a smart web entry point for Flutter that preloads its assets before starting the app
 
 version: 0.1.0+1
 
@@ -19,6 +19,6 @@ vars:
     prompt: What is project description?
   batch_size:
     type: number
-    description: The number of concurrent loads that the pre load will trigger.
+    description: The number of concurrent loads that the preload will trigger.
     default: 20
     prompt: Pre load batch size (defaults to 20)?
