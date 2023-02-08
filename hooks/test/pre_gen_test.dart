@@ -28,7 +28,7 @@ void main() {
       Directory.current = originalDir;
     });
 
-    test('keep the user input values', () {
+    test('uses the user input values when they are not empty', () {
       vars['project_title'] = 'MyTitle';
       vars['project_description'] = 'MyDescription';
       run(hookContext);
