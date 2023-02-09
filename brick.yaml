@@ -22,3 +22,8 @@ vars:
     description: The number of concurrent loads that the preload will trigger.
     default: 20
     prompt: Pre load batch size (defaults to 20)?
+  canvaskit:
+    type: boolean
+    description: If the project should pre load canvaskit.
+    default: true
+    prompt: Pre load canvas kit (defaults to true)?

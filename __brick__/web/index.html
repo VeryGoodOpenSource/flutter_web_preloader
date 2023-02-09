@@ -78,8 +78,10 @@
         var assets = [
           'flutter.js',
           'main.dart.js',
+          {{#canvaskit}}
           'canvaskit/canvaskit.wasm',
           'canvaskit/canvaskit.js',
+          {{/canvaskit}}
           ...additionalScripts,
           ...manifestAssets,
         ];
