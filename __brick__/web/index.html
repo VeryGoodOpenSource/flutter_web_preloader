@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="{{{project_description}}}">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="{{project_title}}">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>{{project_title}}</title>
+  <link rel="manifest" href="manifest.json">
+  <style type="text/css">
+     body.loading-mode {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+     }
+  </style>
+
+  <script>
+    // The value below is injected by flutter build, do not touch.
+    var serviceWorkerVersion = null;
+  </script>
+</head>
+<body class="loading-mode">
+  <div id="progress-bar" style="border: 1px solid blue; width: 250px; height: 50px;">
+    <div id="progress-indicator" style="background-color: blue; height: 100%; width: 0%;"></div>
+  </div>
+  <script>
+    // The value below is injected by flutter build, do not touch.
+    var serviceWorkerVersion = null;
+  </script>
+  <script>
+    (function() {
+      const progressBar = document.querySelector('#progress-bar');
+      const progressIndicator = document.querySelector('#progress-indicator');
+
+      const additionalScripts = [
+        // Add additional scripts here.
+      ];
+
+      function injectScript(url) {
+        return new Promise(function(resolve) {
+          let scriptTag = document.createElement('script');
+          scriptTag.src = url;
+          scriptTag.type = 'application/javascript';
+          scriptTag.onload = function() {
+            resolve();
+          };
+
+          document.body.append(scriptTag);
+        });
+      }
+
+      function beginPreloading(manifestAssets) {
+        var assets = [
+          'flutter.js',
+          'main.dart.js',
+          {{#canvaskit}}
+          'canvaskit/canvaskit.wasm',
+          'canvaskit/canvaskit.js',
+          {{/canvaskit}}
+          ...additionalScripts,
+          ...manifestAssets,
+        ];
+        let totalAssets = assets.length + 1;
+        let loaded = 0;
+
+        const batchSize = {{batch_size}};
+
+        async function reportProgress() {
+          loaded++;
+          const value = Math.floor((loaded / totalAssets) * 100) + '%';
+          progressIndicator.style.width = value;
+
+          if (assets.length == 0) {
+            dispatchAppLoad();
+          } else {
+            load(assets.shift());
+          }
+        }
+
+        function load(url) {
+          const req = new XMLHttpRequest();
+          req.onload = reportProgress;
+          req.open('get', url);
+          req.send();
+        }
+
+        function startBatch() {
+          const end = Math.min(batchSize, assets.length);
+          for (let i = 0; i < end; i++) {
+            load(assets.shift());
+          }
+        }
+
+
+        var scriptLoaded = false;
+        async function dispatchAppLoad() {
+          if (scriptLoaded) {
+            return;
+          }
+          scriptLoaded = true;
+
+          for (let i = 0; i < additionalScripts.length; i++) {
+            await injectScript(additionalScripts[i]);
+          }
+
+          await injectScript('flutter.js');
+
+          // Download main.dart.js
+          _flutter.loader.loadEntrypoint({
+            serviceWorker: {
+              serviceWorkerVersion: serviceWorkerVersion,
+            },
+            onEntrypointLoaded: function(engineInitializer) {
+              engineInitializer.initializeEngine().then(async function(appRunner) {
+                progressBar.remove();
+                document.body.classList.remove('loading-mode');
+                appRunner.runApp();
+              });
+            }
+          });
+        }
+
+        startBatch();
+      }
+
+      window.addEventListener('load', async function(ev) {
+        const response = await fetch('assets/AssetManifest.json');
+        const manifest = await response.json();
+        const assets = Object.values(manifest)
+              .map((list) => list.map((url) => 'assets/' + url))
+              .reduce((arr, curr) => [...arr, ...curr]);
+
+        beginPreloading(assets);
+      });
+    })();
+  </script>
+  </body>
+</html>

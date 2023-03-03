@@ -1,0 +1,3 @@
+hooks/build
+hooks/coverage
+hooks/.dart_tool
