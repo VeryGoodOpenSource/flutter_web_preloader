@@ -15,7 +15,7 @@ in order to preload assets used by the Flutter app. This ensures that when the a
 presented to the user, the assets are already cached by the browser and prevents
 the application from loading piece by piece.
 
-While the assets are being preloaded, a realistic progress bar will be presented
+While the assets are being preloaded, a progress bar will be presented
 to the user.
 
 ## Variables
