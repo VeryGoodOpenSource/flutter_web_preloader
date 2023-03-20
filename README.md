@@ -18,6 +18,9 @@ the application from loading piece by piece.
 While the assets are being preloaded, a progress bar will be presented
 to the user.
 
+To customize the progress bar, look for the `div` with the id `progress-indicator` in the generated
+`web/index.html`, its style can be changed so it can have the desired look.
+
 ## Variables
 
  - `project_title`: The title of the project (defaults to the value on the `pubspec.yaml`).
