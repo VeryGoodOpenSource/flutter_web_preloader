@@ -18,9 +18,6 @@ the application from loading piece by piece.
 While the assets are being preloaded, a progress bar will be presented
 to the user.
 
-To customize the progress bar, look for the `div` with the id `progress-indicator` in the generated
-`web/index.html`, its style can be changed so it can have the desired look.
-
 ## Variables
 
  - `project_title`: The title of the project (defaults to the value on the `pubspec.yaml`).
@@ -28,6 +25,26 @@ To customize the progress bar, look for the `div` with the id `progress-indicato
  - `batch_size`: How match assets will be loaded at the same time (defaults to `20`).
  - `canvaskit`: If the app uses `canvaskit` mode or not (defaults to `true`).
 
+## FAQ
+
+### How can I customize the progress bar?
+
+Look for the `div` with the id `progress-indicator` in the generated
+`web/index.html`, its style can be changed so it can have the desired look.
+
+### Ho can I define the batch size for my project?
+
+That really depends on the number and the average size of your assets. Keep in
+mind that triggering too many requests at the same time may cause unexpected
+issues in the browser. On the other hand if the average size of the assets are low,
+that mean that the requests will finish sooner which means that this number can be
+increased.
+
+The default `20` should be a good number for most projects, which is not too high
+to cause issues, but also not low that will cause the loading to take too much.
+
+In any case, we advise on testing when changing this value to make sure that it
+won't break your app.
 
 
 [1]: https://github.com/felangel/mason
