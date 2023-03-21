@@ -27,21 +27,20 @@ to the user.
 
 ## FAQ
 
-### How can I customize the progress bar?
+### Can I customize the progress bar?
 
 Look for the `div` with the id `progress-indicator` in the generated
 `web/index.html`, its style can be changed so it can have the desired look.
 
-### Ho can I define the batch size for my project?
+### What would be the optimal `batch_size`?
 
-That really depends on the number and the average size of your assets. Keep in
-mind that triggering too many requests at the same time may cause unexpected
-issues in the browser. On the other hand if the average size of the assets are low,
-that mean that the requests will finish sooner which means that this number can be
-increased.
+The `batch_size` depends on the number and average size of your assets. 
 
-The default `20` should be a good number for most projects, which is not too high
-to cause issues, but also not low that will cause the loading to take too much.
+The `batch_size` can be increased when the average size of the assets is small, since the requests will finish sooner.  However, keep in mind that a large `bath_size` may trigger too many requests at the same time and it may cause unexpected issues in the browser. 
+
+On the other hand, the `batch_size` should be decreased when the size of the assets is large.
+
+The default `batch_size` is `20`, this should be a good number for most projects. It is not too high to cause unexpected browser issues, but also not low enough to cause the loading to take too much time.
 
 In any case, we advise on testing when changing this value to make sure that it
 won't break your app.
