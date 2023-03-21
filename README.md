@@ -20,10 +20,12 @@ to the user.
 
 ## Variables
 
- - `project_title`: The title of the project (defaults to the value on the `pubspec.yaml`).
- - `project_description`: The project description (defaults to the `name` attribute in the `pubspec.yaml`).
- - `batch_size`: How match assets will be loaded at the same time (defaults to `20`).
- - `canvaskit`: If the app uses `canvaskit` mode or not (defaults to `true`).
+| Name | Description | Default value |
+| ------|------------------|-------------- |
+|`project_title`| The title of the project | value on the `pubspec.yaml`|
+| `project_description`| The project description |`name` attribute in the `pubspec.yaml`|
+| `batch_size`| How match assets will be loaded at the same time | `20`|
+| `canvaskit`| If the app uses `canvaskit` mode or not |`true`|
 
 ## FAQ
 
