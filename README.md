@@ -31,8 +31,14 @@ to the user.
 
 ### Can I customize the progress bar?
 
-Look for the `div` with the id `progress-indicator` in the generated
-`web/index.html`, its style can be changed so it can have the desired look.
+Yes, the progress bar can be customized. The generated `web/index.html` has a content division element (`div`) with an identifier of `progress-indicator`. This element can be styled using Cascading Style Sheets (CSS).
+For example, we can change the `background-color` to red by doing:
+
+```html
+<div id="progress-bar" style="border: 1px solid blue; width: 250px; height: 50px;">
+    <div id="progress-indicator" style="background-color: red; height: 100%; width: 0%;"></div>
+ </div>
+```
 
 ### What would be the optimal `batch_size`?
 
