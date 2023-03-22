@@ -45,8 +45,7 @@ For example, we can change the `background-color` to red by doing:
 The `batch_size` depends on the number and average size of your assets. 
 
 The `batch_size` can be increased when the average size of the assets is small, since the requests will finish sooner.  However, keep in mind that a large `batch_size` may trigger too many requests at the same time and it may cause unexpected issues in the browser. 
-
-On the other hand, the `batch_size` should be decreased when the size of the assets is large.
+On the other hand, the `batch_size` should be decreased when the size of the assets are large.
 
 The default `batch_size` is `20`, this should be a good number for most projects. It is not too high to cause unexpected browser issues, but also not low enough to cause the loading to take too much time.
 
