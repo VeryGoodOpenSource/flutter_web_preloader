@@ -44,7 +44,7 @@ For example, we can change the `background-color` to red by doing:
 
 The `batch_size` depends on the number and average size of your assets. 
 
-The `batch_size` can be increased when the average size of the assets is small, since the requests will finish sooner.  However, keep in mind that a large `bath_size` may trigger too many requests at the same time and it may cause unexpected issues in the browser. 
+The `batch_size` can be increased when the average size of the assets is small, since the requests will finish sooner.  However, keep in mind that a large `batch_size` may trigger too many requests at the same time and it may cause unexpected issues in the browser. 
 
 On the other hand, the `batch_size` should be decreased when the size of the assets is large.
 
