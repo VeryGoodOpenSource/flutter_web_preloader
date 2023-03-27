@@ -18,5 +18,7 @@
     }
   ],
   "useGitignore": true,
-  "words": []
+  "words": [
+    "canvaskit"
+  ]
 }
