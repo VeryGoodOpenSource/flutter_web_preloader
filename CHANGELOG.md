@@ -1,3 +1,3 @@
-# 0.1.0+1
+# 0.1.0
 
-- feat: initial release.
+- feat: adding initial implementation (#1)
