@@ -1,6 +1,6 @@
 name: flutter_web_preloader
-description: A brick that creates a smart web entry point for Flutter that preloads its assets before starting the app
-
+description: A brick that creates a smart web entry point for Flutter that preloads its assets before starting the app;
+repository: https://github.com/VeryGoodOpenSource/flutter_web_preloader
 version: 0.1.0
 
 environment:
