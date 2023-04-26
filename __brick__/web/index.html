@@ -137,8 +137,11 @@
             },
             onEntrypointLoaded: function(engineInitializer) {
               engineInitializer.initializeEngine().then(async function(appRunner) {
-                progressBar.remove();
-                document.body.classList.remove('loading-mode');
+                window.addEventListener("flutter-first-frame", function () {
+                  progressBar.remove();
+                  document.body.classList.remove('loading-mode');
+                });
+                
                 appRunner.runApp();
               });
             }
