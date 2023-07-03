@@ -24,6 +24,7 @@ to the user.
 | --------------------- | ----------------------------------------------- | --------------------------------------------- |
 | `project_title`       | The title of the project                        | `name` attribute in the `pubspec.yaml`        |
 | `project_description` | The project description                         | `description` attribute in the `pubspec.yaml` |
+| `asset_path`          | The path to the assets                          | `assets`                                      |
 | `batch_size`          | How many assets will be loaded at the same time | `20`                                          |
 | `canvaskit`           | If the app uses `canvaskit` mode or not         | `true`                                        |
 

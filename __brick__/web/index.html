@@ -155,7 +155,7 @@
         const response = await fetch('assets/AssetManifest.json');
         const manifest = await response.json();
         const assets = Object.values(manifest)
-              .map((list) => list.map((url) => 'assets/' + url))
+              .map((list) => list.map((url) => '{{asset_path}}/' + url))
               .reduce((arr, curr) => [...arr, ...curr]);
 
         beginPreloading(assets);

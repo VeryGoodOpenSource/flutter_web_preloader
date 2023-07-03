@@ -17,6 +17,11 @@ vars:
     description: The project description, defaults to the pubspec description value.
     default: ''
     prompt: What is project description?
+  asset_path:
+    type: string
+    description: The asset path to preload, defaults "assets".
+    default: 'assets'
+    prompt: What are the asset path to preload?
   batch_size:
     type: number
     description: The number of concurrent loads that the preload will trigger.
