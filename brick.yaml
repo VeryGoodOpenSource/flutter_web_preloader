@@ -10,12 +10,12 @@ vars:
   project_title:
     type: string
     description: The project title, defaults to the pubspec name value.
-    default: ""
+    default: ''
     prompt: What is project title?
   project_description:
     type: string
     description: The project description, defaults to the pubspec description value.
-    default: ""
+    default: ''
     prompt: What is project description?
   batch_size:
     type: number
