@@ -1,6 +1,8 @@
 # flutter_web_preloader
 
 [![Powered by Mason](https://img.shields.io/endpoint?url=https%3A%2F%2Ftinyurl.com%2Fmason-badge)](https://github.com/felangel/mason)
+[![Available on Brickhub][brickhub_badge]][brickhub_link]
+
 
 A brick that creates a smart web entrypoint for Flutter and preloads any type of asset before starting an app.
 
@@ -59,3 +61,5 @@ In any case, we advise on testing when changing this value to make sure that it
 won't break your app.
 
 [1]: https://github.com/felangel/mason
+[brickhub_badge]: https://img.shields.io/endpoint?url=https%3A%2F%2Fbit.ly%2Fflutter-web-preloader
+[brickhub_link]: https://brickhub.dev/bricks/flutter_web_preloader/
