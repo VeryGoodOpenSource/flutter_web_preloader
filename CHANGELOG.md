@@ -1,3 +1,8 @@
+# 0.2.1
+
+- docs: add brickhub badge ([#20](https://github.com/VeryGoodOpenSource/flutter_web_preloader/pull/20))
+- chore: Removes duplicate script from index.html ([#24](https://github.com/VeryGoodOpenSource/flutter_web_preloader/pull/24))
+
 # 0.2.0
 
 - fix: Loads app even when there's no assets (#12)
