@@ -34,9 +34,6 @@ async function beginPreloading() {
   async function reportProgress() {
     loadedAssets++;
 
-    // Artificial delay to make the progress bar more noticeable.
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
     const value = Math.floor((loadedAssets / totalAssets) * 100) + '%';
     progressIndicator.style.width = value;
 
