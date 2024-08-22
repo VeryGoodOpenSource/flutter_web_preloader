@@ -1,5 +1,5 @@
-{{flutter_js}}
-{{flutter_build_config}}
+{{=<% %>=}}{{flutter_js}}<%={{ }}=%>
+{{=<% %>=}}{{flutter_build_config}}<%={{ }}=%>
 
 const progressBar = document.querySelector('#progress-bar');
 const progressText = document.querySelector('#progress-text');
@@ -81,7 +81,7 @@ async function beginPreloading() {
 
 _flutter.loader.load({
   serviceWorkerSettings: {
-    serviceWorkerVersion: {{flutter_service_worker_version}},
+    serviceWorkerVersion: {{=<% %>=}}{{flutter_service_worker_version}}<%={{ }}=%>,
   },
   onEntrypointLoaded: async function(engineInitializer) {
     await Promise.all([
