@@ -1,3 +1,7 @@
+# 0.3.0 
+
+- refactor: stop using deprecated serviceWorkerVersion ([#29](https://github.com/VeryGoodOpenSource/flutter_web_preloader/pull/29))
+
 # 0.2.1
 
 - docs: add brickhub badge ([#20](https://github.com/VeryGoodOpenSource/flutter_web_preloader/pull/20))

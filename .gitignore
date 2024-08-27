@@ -3,3 +3,4 @@ hooks/coverage
 hooks/.dart_tool
 hooks/pubspec.lock
 .idea/
+.DS_STORE
