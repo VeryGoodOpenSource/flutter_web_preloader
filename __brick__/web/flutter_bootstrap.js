@@ -60,9 +60,9 @@ async function beginPreloading() {
       reportProgress();
     });
     try {
-        return await Promise.all(loadPromises);
+      return await Promise.all(loadPromises);
     } catch (error) {
-        console.error('Error loading one or more asset:', error);
+      console.error('Error loading one or more asset:', error);
     }
   }
 
