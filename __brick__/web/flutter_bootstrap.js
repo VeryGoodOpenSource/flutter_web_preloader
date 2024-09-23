@@ -55,7 +55,10 @@ async function beginPreloading() {
   }
 
   async function loadBatch(urls) {
-    const loadPromises = urls.map(url => load(url).then(reportProgress()));
+    const loadPromises = urls.map(async (url) => {
+      await load(url);
+      reportProgress();
+    });
     try {
         return await Promise.all(loadPromises);
     } catch (error) {
