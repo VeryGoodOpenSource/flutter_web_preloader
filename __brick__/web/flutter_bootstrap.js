@@ -31,7 +31,7 @@ async function beginPreloading() {
   progressIndicator.style.width = '0%';
   progressText.textContent = `Loaded ${loadedAssets} of ${totalAssets} assets`;
 
-  async function reportProgress() {
+  function reportProgress() {
     loadedAssets++;
 
     const value = Math.floor((loadedAssets / totalAssets) * 100) + '%';
