@@ -41,24 +41,17 @@ async function beginPreloading() {
   }
 
   async function load(url) {
-    return new Promise((resolve, reject) => {
-        const req = new XMLHttpRequest();
-
-        req.onload = function() {
-            if (req.status >= 200 && req.status < 300) {
-                resolve(req.response);
-            } else {
-                reject(new Error(`Failed to load: ${req.status} ${req.statusText}`));
-            }
-        };
-
-        req.onerror = function() {
-            reject(new Error('Network error'));
-        };
-
-        req.open('GET', url);
-        req.send();
-    });
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(
+          `Failed to load: ${response.status} ${response.statusText}`,
+        );
+      }
+      return await response.text();
+    } catch (error) {
+      throw new Error("Network error");
+    }
   }
 
   async function loadBatch(urls) {
