@@ -31,44 +31,44 @@ async function beginPreloading() {
   progressIndicator.style.width = '0%';
   progressText.textContent = `Loaded ${loadedAssets} of ${totalAssets} assets`;
 
-  function reportProgress() {
-    loadedAssets++;
-
-    const value = Math.floor((loadedAssets / totalAssets) * 100) + '%';
-    progressIndicator.style.width = value;
-
-    progressText.textContent = `Loaded ${loadedAssets} of ${totalAssets} assets`;
-  }
-
-  async function load(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(
-          `Failed to load: ${response.status} ${response.statusText}`,
-        );
-      }
-      return await response.text();
-    } catch (error) {
-      throw new Error("Network error");
-    }
-  }
-
-  async function loadBatch(urls) {
-    const loadPromises = urls.map(async (url) => {
-      await load(url);
-      reportProgress();
-    });
-    try {
-      return await Promise.all(loadPromises);
-    } catch (error) {
-      console.error('Error loading one or more asset:', error);
-    }
-  }
-
   for (let i = 0; i < assets.length; i += batchSize) {
     const batch = assets.slice(i, i + batchSize);
     await loadBatch(batch);
+  }
+}
+
+function reportProgress() {
+  loadedAssets++;
+
+  const value = Math.floor((loadedAssets / totalAssets) * 100) + '%';
+  progressIndicator.style.width = value;
+
+  progressText.textContent = `Loaded ${loadedAssets} of ${totalAssets} assets`;
+}
+
+async function load(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(
+        `Failed to load: ${response.status} ${response.statusText}`,
+      );
+    }
+    return await response.text();
+  } catch (error) {
+    throw new Error("Network error");
+  }
+}
+
+async function loadBatch(urls) {
+  const loadPromises = urls.map(async (url) => {
+    await load(url);
+    reportProgress();
+  });
+  try {
+    return await Promise.all(loadPromises);
+  } catch (error) {
+    console.error('Error loading one or more asset:', error);
   }
 }
 
