@@ -1,3 +1,4 @@
+"use strict";
 {{=<% %>=}}{{flutter_js}}<%={{ }}=%>
 {{=<% %>=}}{{flutter_build_config}}<%={{ }}=%>
 
