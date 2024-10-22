@@ -1,0 +1,13 @@
+name: publish_flutter_web_preloader
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/mason_publish.yml@v1
+    secrets:
+      mason_credentials: ${{ secrets.MASON_CREDENTIALS }}
