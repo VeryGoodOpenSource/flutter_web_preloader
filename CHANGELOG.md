@@ -1,4 +1,8 @@
-# 0.3.0 
+# 0.4.0
+
+- refactor: use the `fetch` API ([#33](https://github.com/VeryGoodOpenSource/flutter_web_preloader/pull/33))
+
+# 0.3.0
 
 - refactor: stop using deprecated serviceWorkerVersion ([#29](https://github.com/VeryGoodOpenSource/flutter_web_preloader/pull/29))
 
