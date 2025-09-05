@@ -17,16 +17,18 @@ async function readAssets() {
   return assets;
 }
 
+let loadedAssets = 0;
+let totalAssets;
+
 async function beginPreloading() {
   const assets = await readAssets();
 
-  let totalAssets = assets.length;
+  totalAssets = assets.length;
   if (totalAssets === 0) {
     // No assets to load, so we can skip the loading process entirely.
     return;
   }
 
-  let loadedAssets = 0;
   const batchSize = {{batch_size}};
 
   progressIndicator.style.width = '0%';
