@@ -2,18 +2,48 @@
 {{=<% %>=}}{{flutter_js}}<%={{ }}=%>
 {{=<% %>=}}{{flutter_build_config}}<%={{ }}=%>
 
-const progressBar = document.querySelector('#progress-bar');
 const progressText = document.querySelector('#progress-text');
 const progressIndicator = document.querySelector('#progress-indicator');
 
 async function readAssets() {
-  // NOTE: AssetManifest.json will be deprecated in favour of AssetManifest.bin:
-  // https://github.com/VeryGoodOpenSource/flutter_web_preloader/issues/28
-  const response = await fetch('assets/AssetManifest.json');
-  const manifest = await response.json();
-  const assets = Object.values(manifest)
-        .map((list) => list.map((url) => 'assets/' + url))
-        .reduce((arr, curr) => [...arr, ...curr], []);
+  // AssetManifest.bin is encoded with Flutter's Standard Message Codec.
+  // See: https://docs.flutter.dev/platform-integration/web/initialization
+  const response = await fetch('assets/AssetManifest.bin');
+  const buffer = await response.arrayBuffer();
+  const view = new DataView(buffer);
+  let o = 0;
+
+  const readByte = () => view.getUint8(o++);
+  const readSize = () => {
+    const b = readByte();
+    if (b < 254) return b;
+    if (b === 254) { const s = view.getUint16(o, true); o += 2; return s; }
+    const s = view.getUint32(o, true); o += 4; return s;
+  };
+  const readString = () => {
+    const n = readSize();
+    const s = new TextDecoder().decode(new Uint8Array(buffer, o, n));
+    o += n;
+    return s;
+  };
+  const skip = () => {
+    const t = readByte();
+    if (t <= 2) return;
+    if (t === 7 || t === 8) { const n = readSize(); o += n; return; }
+    if (t === 12) { for (let i = readSize(); i > 0; i--) skip(); return; }
+    if (t === 13) { for (let i = readSize() * 2; i > 0; i--) skip(); }
+  };
+
+  // The manifest is a map; we only need its keys (the asset paths).
+  readByte(); // type 13 (map)
+  const count = readSize();
+  const assets = [];
+  for (let i = 0; i < count; i++) {
+    readByte(); // type 7 (string)
+    const path = readString();
+    if (!path.startsWith('packages/')) assets.push(path);
+    skip();
+  }
   return assets;
 }
 
@@ -64,21 +94,17 @@ async function load(url) {
 }
 
 async function loadBatch(urls) {
-  const loadPromises = urls.map(async (url) => {
-    await load(url);
-    reportProgress();
-  });
   try {
-    return await Promise.all(loadPromises);
+    await Promise.all(urls.map(async (url) => {
+      await load(url);
+      reportProgress();
+    }));
   } catch (error) {
-    console.error('Error loading one or more asset:', error);
+    console.error('Error loading asset:', error);
   }
 }
 
 _flutter.loader.load({
-  serviceWorkerSettings: {
-    serviceWorkerVersion: {{=<% %>=}}{{flutter_service_worker_version}}<%={{ }}=%>,
-  },
   onEntrypointLoaded: async function(engineInitializer) {
     await Promise.all([
       beginPreloading(),
