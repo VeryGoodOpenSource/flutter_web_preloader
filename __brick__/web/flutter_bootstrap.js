@@ -8,6 +8,9 @@ const progressIndicator = document.querySelector('#progress-indicator');
 async function readAssets() {
   // AssetManifest.bin is encoded with Flutter's Standard Message Codec.
   // See: https://docs.flutter.dev/platform-integration/web/initialization
+  // See also: https://docs.flutter.dev/release/breaking-changes/asset-manifest-dot-json#reading-asset-manifest-information-from-dart-code-outside-of-a-flutter-app
+  // Keep in mind that AssetManifest.bin is an implementation detail of Flutter. 
+  // Reading this file isn't an officially supported workflow. The contents or format of the file might change in a future Flutter release without an announcement.
   const response = await fetch('assets/AssetManifest.bin');
   const buffer = await response.arrayBuffer();
   const view = new DataView(buffer);
