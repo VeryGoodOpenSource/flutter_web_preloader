@@ -1,6 +1,6 @@
 "use strict";
-{ {=<% %>=} } { { flutter_js } }<%={ { } }=%>
-  {{=<% %>=}}{ { flutter_build_config } }<%={ { } }=%>
+{{=<% %>=}}{{flutter_js}}<%={{ }}=%>
+{{=<% %>=}}{{flutter_build_config}}<%={{ }}=%>
 
 const progressText = document.querySelector('#progress-text');
 const progressIndicator = document.querySelector('#progress-indicator');
