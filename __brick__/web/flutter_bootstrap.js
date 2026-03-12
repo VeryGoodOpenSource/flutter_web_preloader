@@ -1,6 +1,6 @@
 "use strict";
-{{=<% %>=}}{{flutter_js}}<%={{ }}=%>
-{{=<% %>=}}{{flutter_build_config}}<%={{ }}=%>
+{ {=<% %>=} } { { flutter_js } }<%={ { } }=%>
+  {{=<% %>=}}{ { flutter_build_config } }<%={ { } }=%>
 
 const progressText = document.querySelector('#progress-text');
 const progressIndicator = document.querySelector('#progress-indicator');
@@ -59,15 +59,16 @@ async function beginPreloading() {
     return;
   }
 
-  const batchSize = {{batch_size}};
+  const batchSize = {{ batch_size }
+};
 
-  progressIndicator.style.width = '0%';
-  progressText.textContent = `Loaded ${loadedAssets} of ${totalAssets} assets`;
+progressIndicator.style.width = '0%';
+progressText.textContent = `Loaded ${loadedAssets} of ${totalAssets} assets`;
 
-  for (let i = 0; i < assets.length; i += batchSize) {
-    const batch = assets.slice(i, i + batchSize);
-    await loadBatch(batch);
-  }
+for (let i = 0; i < assets.length; i += batchSize) {
+  const batch = assets.slice(i, i + batchSize);
+  await loadBatch(batch);
+}
 }
 
 function reportProgress() {
@@ -94,18 +95,19 @@ async function load(url) {
 }
 
 async function loadBatch(urls) {
+  const loadPromises = urls.map(async (url) => {
+    await load(url);
+    reportProgress();
+  });
   try {
-    await Promise.all(urls.map(async (url) => {
-      await load(url);
-      reportProgress();
-    }));
+    return await Promise.all(loadPromises);
   } catch (error) {
-    console.error('Error loading asset:', error);
+    console.error('Error loading one or more asset:', error);
   }
 }
 
 _flutter.loader.load({
-  onEntrypointLoaded: async function(engineInitializer) {
+  onEntrypointLoaded: async function (engineInitializer) {
     await Promise.all([
       beginPreloading(),
       engineInitializer.initializeEngine(),
