@@ -3,6 +3,11 @@
 [![Powered by Mason](https://img.shields.io/endpoint?url=https%3A%2F%2Ftinyurl.com%2Fmason-badge)](https://github.com/felangel/mason)
 [![Available on Brickhub][brickhub_badge]][brickhub_link]
 
+> **DEPRECATED:** This brick has been discontinued. The web preloading functionality has been moved into the [`flame_game`][flame_game_template] template in [very_good_templates][very_good_templates]. New projects should use `very_good create flame_game` instead.
+>
+> If you already generated your `web/index.html` using this brick, it will continue to work — no migration is needed. This repository will no longer receive updates.
+
+---
 
 A brick that creates a smart web entrypoint for Flutter and preloads any type of asset before starting an app.
 
@@ -62,3 +67,5 @@ won't break your app.
 [1]: https://github.com/felangel/mason
 [brickhub_badge]: https://img.shields.io/endpoint?url=https%3A%2F%2Fbit.ly%2Fflutter-web-preloader
 [brickhub_link]: https://brickhub.dev/bricks/flutter_web_preloader/
+[flame_game_template]: https://github.com/VeryGoodOpenSource/very_good_templates/tree/main/flame_game
+[very_good_templates]: https://github.com/VeryGoodOpenSource/very_good_templates
